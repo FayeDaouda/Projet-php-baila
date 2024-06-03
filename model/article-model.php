@@ -1,46 +1,44 @@
 <?php
-
-function findAllType(): array
+function findAll(): array
 {
     // Connecter à la BD
     $dsn = 'mysql:host=localhost:8889;dbname=cours_php_ism';
     $username = 'root';
     $password = 'root';
-    // Essayer
+
     try {
         $dbh = new PDO($dsn, $username, $password);
-        $sql = 'SELECT * FROM  type c'; // Correction de la requête SQL
+        $sql = 'SELECT * FROM article a, categorie c, type t WHERE a.typeId = t.id AND a.categorieId = c.id';
         $stm = $dbh->query($sql);
 
         // Récupérer tous les résultats sous forme de tableau associatif
         return $stm->fetchAll(PDO::FETCH_ASSOC);
     } 
-    // Capturer les exceptions PDO
     catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
         return [];
     }
 }
 
-function saveType(array $type): int
+
+
+function saveArticle(array $data): int
 {
     // Connecter à la BD
     $dsn = 'mysql:host=localhost:8889;dbname=cours_php_ism';
     $username = 'root';
     $password = 'root';
-    // Essayer
+
     try {
-        extract($type);
         $dbh = new PDO($dsn, $username, $password);
-        $sql = "INSERT INTO `type` (`nomType`) VALUES ('$nomType');";
-         return $dbh->exec( $sql);
+        $sql = "INSERT INTO `article` (`libelle`, `qteStock`, `prixAppro`, `typeid`, `categorieid`) VALUES ('$libelle', '$qteStock', '$prixAppro', '$typeid', '$categorieid');";
+        return  $dbh->exec($sql);
+
     } 
-    // Capturer les exceptions PDO
     catch (PDOException $e) {
         echo "Erreur de connexion : " . $e->getMessage();
+    
     }
 }
 
-
 ?>
-

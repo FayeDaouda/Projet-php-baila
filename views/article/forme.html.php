@@ -5,7 +5,7 @@
                 </div>
                 <div class="card-body">
                     
-                <form>
+                <form method="POST" action="<?=WEBROOT?>">
                         <div class="mb-2">
                         <label for="exampleInputEmail1" class="form-label">libelle</label>
                         <input type="text" class="form-control"id="exampleInputEmail1" aria-describedby="emailHelp"/>
@@ -20,25 +20,25 @@
                         </div>
                         <div class="mb-2">
                             <label for="QteStock" class="form-label">Categorie</label>
-                            <select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
-                            
+                            <select name="categorieId" class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
                                 <option selected>...</option>
-                            <?php foreach ($categories as $categorie): ?>
-                                <option value="<?php echo $categorie["id"]; ?>"><?php echo $categorie["nomCategorie"]; ?></option>
-                             <?php endforeach; ?>
-                              
+                                <?php foreach ($categories as $categorie): ?>
+                                    <option value="<?php echo $categorie["id"]; ?>"><?php echo $categorie["nomCategorie"]; ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
                         <div class="mb-2">
                             <label for="QteStock" class="form-label">Type</label>
-                            <select class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
+                            <select name="typeId" class="form-select form-select-md mb-3" aria-label=".form-select-lg example">
                                 <option selected>...</option>
                                 <?php foreach ($types as $type): ?>
-                                <option value="<?php echo $type["id"]; ?>"><?php echo $type["nomType"]; ?></option>
-                             <?php endforeach; ?>
+                                    <option value="<?php echo $type["id"]; ?>"><?php echo $type["nomType"]; ?></option>
+                                <?php endforeach; ?>
                             </select>
                         </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                             <input type="hidden" name="controller" value="article">
+                            <input type="hidden" name="action" value="add-article">        
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
 
                     
                 </form>

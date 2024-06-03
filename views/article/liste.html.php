@@ -9,7 +9,7 @@
                                     name=""
                                     id=""
                                     class="btn btn-outline-dark btn-sm "
-                                    href="<?=WEBROOT ?>/?action=form-article" 
+                                    href="<?=WEBROOT ?>/?controller=article&action=forme-article" 
                                     role="button"
                                     >Nouveau</a
                                 >
